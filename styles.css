@@ -379,3 +379,27 @@ tr:nth-child(even) td { background: rgba(255,255,255,.01); }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; text-align: center; }
 }
+
+/* ── SKIP LINK ── */
+.skip-link {
+  position: fixed; top: -100%; left: 1rem;
+  background: var(--v); color: #fff; padding: .5rem 1rem;
+  border-radius: 0 0 8px 8px; font-weight: 700; font-size: .9rem;
+  text-decoration: none; z-index: 9999; transition: top .2s;
+}
+.skip-link:focus { top: 0; }
+
+/* ── FOCUS INDICATORS ── */
+*:focus-visible {
+  outline: 2px solid var(--v);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+button:focus-visible, a:focus-visible { outline: 2px solid var(--v); outline-offset: 3px; }
+
+/* ── PRINT ── */
+@media print {
+  nav, footer, .aurora, .hero-grid, .btn-nav, .btn-primary, .btn-outline { display: none !important; }
+  body { background: #fff; color: #000; }
+  .grad-text { -webkit-text-fill-color: #4F46E5; }
+}

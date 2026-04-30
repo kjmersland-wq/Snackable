@@ -1,13 +1,76 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="nb">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Kontakt — SnackAble Learn · KM Tech Labs</title>
-<meta name="description" content="Ta kontakt med KM Tech Labs i Kristiansand. Vi svarer på spørsmål om SnackAble Learn, abonnement, bedriftsløsninger og teknisk support." />
+<meta name="description" content="Ta kontakt med KM Tech Labs i Kristiansand. Vi svarer på spørsmål om SnackAble Learn, abonnement, bedriftsløsninger og teknisk support innen 1–2 virkedager." />
+<link rel="canonical" href="https://010452.github.io/Snackable/kontakt.html" />
+<link rel="sitemap" type="application/xml" href="sitemap.xml" />
 <meta name="theme-color" content="#8B5CF6" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://010452.github.io/Snackable/kontakt.html" />
+<meta property="og:title" content="Kontakt — SnackAble Learn · KM Tech Labs" />
+<meta property="og:description" content="Ta kontakt med KM Tech Labs i Kristiansand. Vi svarer på spørsmål om SnackAble Learn, abonnement, bedriftsløsninger og teknisk support innen 1–2 virkedager." />
+<meta property="og:image" content="https://010452.github.io/Snackable/og-image.svg" />
+<meta property="og:locale" content="nb_NO" />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Kontakt — SnackAble Learn · KM Tech Labs" />
+<meta name="twitter:description" content="Ta kontakt med KM Tech Labs i Kristiansand. Vi svarer på spørsmål om SnackAble Learn, abonnement, bedriftsløsninger og teknisk support innen 1–2 virkedager." />
+<meta name="twitter:image" content="https://010452.github.io/Snackable/og-image.svg" />
+<!-- Apple PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="SnackAble Learn" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238B5CF6'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E" />
 <link rel="manifest" href="manifest.json" />
 <link rel="stylesheet" href="styles.css" />
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://010452.github.io/Snackable/kontakt.html",
+      "url": "https://010452.github.io/Snackable/kontakt.html",
+      "name": "Kontakt SnackAble Learn — KM Tech Labs",
+      "description": "Ta kontakt med KM Tech Labs i Kristiansand om SnackAble Learn, abonnement, bedriftsløsninger og teknisk support.",
+      "inLanguage": "nb-NO",
+      "isPartOf": {"@type": "WebSite", "url": "https://010452.github.io/Snackable/", "name": "SnackAble Learn"}
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://010452.github.io/Snackable/#organization",
+      "name": "KM Tech Labs",
+      "url": "https://010452.github.io/Snackable/",
+      "email": "kjmersland@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kristiansand",
+        "addressRegion": "Agder",
+        "addressCountry": "NO"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "kjmersland@gmail.com",
+        "contactType": "customer support",
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "09:00",
+          "closes": "17:00"
+        },
+        "availableLanguage": ["Norwegian", "English"]
+      }
+    }
+  ]
+}
+</script>
 <style>
 .contact-layout { display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;align-items:start;margin-top:4rem; }
 .contact-info {}
@@ -66,21 +129,23 @@
 </head>
 <body>
 
-<nav id="navbar">
+<a href="#main-content" class="skip-link">Hopp til innhold</a>
+
+<nav id="navbar" role="navigation" aria-label="Hovednavigasjon">
   <a class="nav-logo" href="index.html"><div class="nav-logo-badge">⚡</div><span class="nav-logo-text">SnackAble Learn</span></a>
   <div class="nav-links">
     <a href="index.html">Hjem</a><a href="features.html">Funksjoner</a>
     <a href="vitenskap.html">Læringsvitenskap</a><a href="priser.html">Priser</a>
     <a href="kontakt.html" class="active">Kontakt</a>
   </div>
-  <div class="nav-right"><button class="btn-ghost-sm">Logg inn</button><a href="priser.html" class="btn-nav">Start gratis →</a></div>
-  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  <div class="nav-right"><button class="btn-ghost-sm" type="button">Logg inn</button><a href="priser.html" class="btn-nav">Start gratis →</a></div>
+  <button class="hamburger" id="hamburger" type="button" aria-label="Meny" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html">Hjem</a><a href="features.html">Funksjoner</a><a href="vitenskap.html">Læringsvitenskap</a><a href="priser.html">Priser</a><a href="kontakt.html">Kontakt</a><a href="priser.html" style="color:var(--v);font-weight:800;">Start gratis →</a>
 </div>
 
-<section class="page-hero" style="padding-bottom:2rem;">
+<section class="page-hero" id="main-content" style="padding-bottom:2rem;">
   <div class="aurora"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
   <div class="hero-grid"></div>
   <div class="page-hero-inner">
@@ -324,7 +389,7 @@
 
 <script>
 window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60));
-document.getElementById('hamburger').addEventListener('click',function(){this.classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open');});
+document.getElementById('hamburger').addEventListener('click',function(){const isOpen=this.classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open');this.setAttribute('aria-expanded',isOpen.toString());});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 

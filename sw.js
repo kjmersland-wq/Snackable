@@ -1,44 +1,115 @@
-const CACHE = 'snackable-v1';
-const ASSETS = [
+const CACHE_VERSION = 'snackable-v2';
+const STATIC_CACHE  = `${CACHE_VERSION}-static`;
+const IMAGE_CACHE   = `${CACHE_VERSION}-images`;
+
+/* Assets to pre-cache on install */
+const PRECACHE_ASSETS = [
   './index.html',
   './features.html',
   './vitenskap.html',
   './priser.html',
   './kontakt.html',
+  './404.html',
   './styles.css',
-  './manifest.json'
+  './manifest.json',
+  './og-image.svg'
 ];
 
+/* ── INSTALL: pre-cache static assets ── */
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())
+    caches.open(STATIC_CACHE)
+      .then(cache => cache.addAll(PRECACHE_ASSETS))
+      .then(() => self.skipWaiting())
   );
 });
 
+/* ── ACTIVATE: purge old caches ── */
 self.addEventListener('activate', e => {
+  const validCaches = [STATIC_CACHE, IMAGE_CACHE];
   e.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    ).then(() => self.clients.claim())
+    caches.keys()
+      .then(keys => Promise.all(
+        keys
+          .filter(k => !validCaches.includes(k))
+          .map(k => caches.delete(k))
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
+/* ── FETCH ── */
 self.addEventListener('fetch', e => {
-  if (e.request.method !== 'GET') return;
-  if (e.request.url.includes('formsubmit.co')) return;
-  if (e.request.url.includes('unsplash.com')) {
+  const { request } = e;
+
+  /* Only handle GET requests */
+  if (request.method !== 'GET') return;
+
+  /* Never intercept FormSubmit or Stripe */
+  if (
+    request.url.includes('formsubmit.co') ||
+    request.url.includes('stripe.com') ||
+    request.url.includes('js.stripe.com')
+  ) return;
+
+  /* HTML pages: Network-First (freshness matters) */
+  if (request.destination === 'document' || request.url.endsWith('.html')) {
     e.respondWith(
-      caches.open(CACHE).then(async cache => {
-        const cached = await cache.match(e.request);
+      fetch(request)
+        .then(response => {
+          const clone = response.clone();
+          caches.open(STATIC_CACHE).then(cache => cache.put(request, clone));
+          return response;
+        })
+        .catch(() => caches.match(request).then(cached => cached || caches.match('./404.html')))
+    );
+    return;
+  }
+
+  /* CSS / JS / manifest: Cache-First with background revalidation (Stale-While-Revalidate) */
+  if (
+    request.destination === 'style' ||
+    request.destination === 'script' ||
+    request.url.endsWith('.css') ||
+    request.url.endsWith('.js') ||
+    request.url.endsWith('.json')
+  ) {
+    e.respondWith(
+      caches.open(STATIC_CACHE).then(async cache => {
+        const cached = await cache.match(request);
+        const networkFetch = fetch(request).then(response => {
+          cache.put(request, response.clone());
+          return response;
+        }).catch(() => null);
+        return cached || networkFetch;
+      })
+    );
+    return;
+  }
+
+  /* Images / SVGs: Cache-First */
+  if (
+    request.destination === 'image' ||
+    request.url.endsWith('.svg') ||
+    request.url.endsWith('.png') ||
+    request.url.endsWith('.jpg') ||
+    request.url.endsWith('.webp')
+  ) {
+    e.respondWith(
+      caches.open(IMAGE_CACHE).then(async cache => {
+        const cached = await cache.match(request);
         if (cached) return cached;
-        const response = await fetch(e.request).catch(() => null);
-        if (response) cache.put(e.request, response.clone());
+        const response = await fetch(request).catch(() => null);
+        if (response) cache.put(request, response.clone());
         return response;
       })
     );
     return;
   }
+
+  /* Default: Network-First with cache fallback */
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request))
+    fetch(request)
+      .catch(() => caches.match(request))
   );
 });

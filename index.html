@@ -1,13 +1,75 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="nb">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SnackAble Learn — Fra passiv til aktiv læring på 60 sekunder</title>
-<meta name="description" content="SnackAble Learn gjør YouTube-videoer, PDF-er og bloggartikler om til interaktive mikrokurs med quizer og flashcards — automatisk, på under 60 sekunder." />
+<title>SnackAble Learn — Aktiv læring på 60 sekunder</title>
+<meta name="description" content="SnackAble Learn gjør YouTube-videoer, PDF-er og artikler om til interaktive mikrokurs med quizer og flashcards — automatisk, på under 60 sekunder." />
+<link rel="canonical" href="https://010452.github.io/Snackable/index.html" />
+<link rel="sitemap" type="application/xml" href="sitemap.xml" />
 <meta name="theme-color" content="#8B5CF6" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://010452.github.io/Snackable/index.html" />
+<meta property="og:title" content="SnackAble Learn — Aktiv læring på 60 sekunder" />
+<meta property="og:description" content="SnackAble Learn gjør YouTube-videoer, PDF-er og artikler om til interaktive mikrokurs med quizer og flashcards — automatisk, på under 60 sekunder." />
+<meta property="og:image" content="https://010452.github.io/Snackable/og-image.svg" />
+<meta property="og:locale" content="nb_NO" />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SnackAble Learn — Aktiv læring på 60 sekunder" />
+<meta name="twitter:description" content="SnackAble Learn gjør YouTube-videoer, PDF-er og artikler om til interaktive mikrokurs med quizer og flashcards — automatisk, på under 60 sekunder." />
+<meta name="twitter:image" content="https://010452.github.io/Snackable/og-image.svg" />
+<!-- Apple PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="SnackAble Learn" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238B5CF6'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E" />
 <link rel="manifest" href="manifest.json" />
 <link rel="stylesheet" href="styles.css" />
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://010452.github.io/Snackable/#organization",
+      "name": "KM Tech Labs",
+      "url": "https://010452.github.io/Snackable/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://010452.github.io/Snackable/og-image.svg"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "kjmersland@gmail.com",
+        "contactType": "customer support",
+        "availableLanguage": ["Norwegian", "English"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kristiansand",
+        "addressCountry": "NO"
+      },
+      "sameAs": []
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://010452.github.io/Snackable/#website",
+      "url": "https://010452.github.io/Snackable/",
+      "name": "SnackAble Learn",
+      "description": "AI-drevet plattform for mikrolæring basert på Active Recall og Spaced Repetition",
+      "publisher": {
+        "@id": "https://010452.github.io/Snackable/#organization"
+      },
+      "inLanguage": "nb-NO"
+    }
+  ]
+}
+</script>
 <style>
 /* ── HERO INPUT ── */
 .demo-bar {
@@ -115,8 +177,10 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Hopp til innhold</a>
+
 <!-- NAV -->
-<nav id="navbar">
+<nav id="navbar" role="navigation" aria-label="Hovednavigasjon">
   <a class="nav-logo" href="index.html">
     <div class="nav-logo-badge">⚡</div>
     <span class="nav-logo-text">SnackAble Learn</span>
@@ -129,10 +193,10 @@
     <a href="kontakt.html">Kontakt</a>
   </div>
   <div class="nav-right">
-    <button class="btn-ghost-sm">Logg inn</button>
+    <button class="btn-ghost-sm" type="button">Logg inn</button>
     <a href="priser.html" class="btn-nav">Start gratis →</a>
   </div>
-  <button class="hamburger" id="hamburger" aria-label="Meny">
+  <button class="hamburger" id="hamburger" type="button" aria-label="Meny" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -146,7 +210,7 @@
 </div>
 
 <!-- HERO -->
-<section class="page-hero" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+<section class="page-hero" id="main-content" style="min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;">
   <div class="aurora">
     <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
   </div>
@@ -455,8 +519,9 @@ window.addEventListener('scroll', () => {
 const ham = document.getElementById('hamburger');
 const mob = document.getElementById('mobileMenu');
 ham.addEventListener('click', () => {
-  ham.classList.toggle('open');
+  const isOpen = ham.classList.toggle('open');
   mob.classList.toggle('open');
+  ham.setAttribute('aria-expanded', isOpen.toString());
 });
 
 /* ── Scroll reveal ── */

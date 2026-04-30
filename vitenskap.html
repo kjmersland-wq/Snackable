@@ -1,13 +1,81 @@
 <!DOCTYPE html>
-<html lang="no">
+<html lang="nb">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Læringsvitenskap — SnackAble Learn</title>
-<meta name="description" content="Les om forskningen bak SnackAble Learn: Ebbinghaus Forgetting Curve, Active Recall, Spaced Repetition og Testing Effect — og hvordan vi implementerer det." />
+<title>Læringsvitenskap — Active Recall & Spaced Repetition</title>
+<meta name="description" content="Forskningen bak SnackAble Learn: Ebbinghaus Forgetting Curve, Active Recall, Spaced Repetition og Testing Effect — og hvordan vi implementerer det automatisk." />
+<link rel="canonical" href="https://010452.github.io/Snackable/vitenskap.html" />
+<link rel="sitemap" type="application/xml" href="sitemap.xml" />
 <meta name="theme-color" content="#8B5CF6" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://010452.github.io/Snackable/vitenskap.html" />
+<meta property="og:title" content="Læringsvitenskap — Active Recall & Spaced Repetition" />
+<meta property="og:description" content="Forskningen bak SnackAble Learn: Ebbinghaus Forgetting Curve, Active Recall, Spaced Repetition og Testing Effect — og hvordan vi implementerer det automatisk." />
+<meta property="og:image" content="https://010452.github.io/Snackable/og-image.svg" />
+<meta property="og:locale" content="nb_NO" />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Læringsvitenskap — Active Recall & Spaced Repetition" />
+<meta name="twitter:description" content="Forskningen bak SnackAble Learn: Ebbinghaus Forgetting Curve, Active Recall, Spaced Repetition og Testing Effect — og hvordan vi implementerer det automatisk." />
+<meta name="twitter:image" content="https://010452.github.io/Snackable/og-image.svg" />
+<!-- Apple PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="SnackAble Learn" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238B5CF6'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E" />
 <link rel="manifest" href="manifest.json" />
 <link rel="stylesheet" href="styles.css" />
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://010452.github.io/Snackable/vitenskap.html",
+  "headline": "Læringsvitenskap bak SnackAble Learn: Active Recall og Spaced Repetition",
+  "description": "Forskningen bak SnackAble Learn: Ebbinghaus Forgetting Curve, Active Recall, Spaced Repetition og Testing Effect.",
+  "url": "https://010452.github.io/Snackable/vitenskap.html",
+  "inLanguage": "nb-NO",
+  "datePublished": "2025-05-01",
+  "dateModified": "2025-05-01",
+  "author": {
+    "@type": "Organization",
+    "name": "KM Tech Labs",
+    "url": "https://010452.github.io/Snackable/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "KM Tech Labs",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://010452.github.io/Snackable/og-image.svg"
+    }
+  },
+  "citation": [
+    {
+      "@type": "ScholarlyArticle",
+      "headline": "The Power of Testing Memory: Basic Research and Implications for Educational Practice",
+      "author": [{"@type": "Person", "name": "Henry L. Roediger III"}, {"@type": "Person", "name": "Jeffrey D. Karpicke"}],
+      "datePublished": "2006",
+      "isPartOf": {"@type": "Periodical", "name": "Perspectives on Psychological Science"}
+    },
+    {
+      "@type": "Book",
+      "headline": "Über das Gedächtnis",
+      "author": [{"@type": "Person", "name": "Hermann Ebbinghaus"}],
+      "datePublished": "1885"
+    }
+  ],
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://010452.github.io/Snackable/",
+    "name": "SnackAble Learn"
+  }
+}
+</script>
 <style>
 .sci-lead { font-size:1.15rem;color:var(--mut2);max-width:680px;line-height:1.8;margin-bottom:1.5rem; }
 .research-block { display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start;margin:5rem 0; }
@@ -71,21 +139,23 @@
 </head>
 <body>
 
-<nav id="navbar">
+<a href="#main-content" class="skip-link">Hopp til innhold</a>
+
+<nav id="navbar" role="navigation" aria-label="Hovednavigasjon">
   <a class="nav-logo" href="index.html"><div class="nav-logo-badge">⚡</div><span class="nav-logo-text">SnackAble Learn</span></a>
   <div class="nav-links">
     <a href="index.html">Hjem</a><a href="features.html">Funksjoner</a>
     <a href="vitenskap.html" class="active">Læringsvitenskap</a>
     <a href="priser.html">Priser</a><a href="kontakt.html">Kontakt</a>
   </div>
-  <div class="nav-right"><button class="btn-ghost-sm">Logg inn</button><a href="priser.html" class="btn-nav">Start gratis →</a></div>
-  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  <div class="nav-right"><button class="btn-ghost-sm" type="button">Logg inn</button><a href="priser.html" class="btn-nav">Start gratis →</a></div>
+  <button class="hamburger" id="hamburger" type="button" aria-label="Meny" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="index.html">Hjem</a><a href="features.html">Funksjoner</a><a href="vitenskap.html">Læringsvitenskap</a><a href="priser.html">Priser</a><a href="kontakt.html">Kontakt</a><a href="priser.html" style="color:var(--v);font-weight:800;">Start gratis →</a>
 </div>
 
-<section class="page-hero">
+<section class="page-hero" id="main-content">
   <div class="aurora"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
   <div class="hero-grid"></div>
   <div class="page-hero-inner">
@@ -320,7 +390,7 @@
 
 <script>
 window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60));
-document.getElementById('hamburger').addEventListener('click',function(){this.classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open');});
+document.getElementById('hamburger').addEventListener('click',function(){const isOpen=this.classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open');this.setAttribute('aria-expanded',isOpen.toString());});
 const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.08});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
