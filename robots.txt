@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://010452.github.io/Snackable/sitemap.xml
+Sitemap: https://kjmersland-wq.github.io/Snackable/sitemap.xml
