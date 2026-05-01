@@ -3,6 +3,63 @@
   "public": true,
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/no/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "destination": "/no/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/priser.html",
+      "destination": "/no/pricing.html",
+      "permanent": true
+    },
+    {
+      "source": "/features.html",
+      "destination": "/no/features.html",
+      "permanent": true
+    },
+    {
+      "source": "/kontakt.html",
+      "destination": "/no/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/vitenskap.html",
+      "destination": "/no/science.html",
+      "permanent": true
+    },
+    {
+      "source": "/en/index.html",
+      "destination": "/uk/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/en/pricing.html",
+      "destination": "/uk/pricing.html",
+      "permanent": true
+    },
+    {
+      "source": "/en/features.html",
+      "destination": "/uk/features.html",
+      "permanent": true
+    },
+    {
+      "source": "/en/contact.html",
+      "destination": "/uk/contact.html",
+      "permanent": true
+    },
+    {
+      "source": "/en/science.html",
+      "destination": "/uk/science.html",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/sw.js",
