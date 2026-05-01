@@ -1,6 +1,7 @@
-const CACHE_VERSION = 'snackable-v2';
+const CACHE_VERSION = 'snackable-v3';
 const STATIC_CACHE  = `${CACHE_VERSION}-static`;
 const IMAGE_CACHE   = `${CACHE_VERSION}-images`;
+const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
 /* Assets to pre-cache on install */
 const PRECACHE_ASSETS = [
@@ -12,7 +13,12 @@ const PRECACHE_ASSETS = [
   './404.html',
   './styles.css',
   './manifest.json',
-  './og-image.svg'
+  './og-image.svg',
+  './en/index.html',
+  './en/features.html',
+  './en/science.html',
+  './en/pricing.html',
+  './en/contact.html'
 ];
 
 /* ── INSTALL: pre-cache static assets ── */
@@ -26,7 +32,7 @@ self.addEventListener('install', e => {
 
 /* ── ACTIVATE: purge old caches ── */
 self.addEventListener('activate', e => {
-  const validCaches = [STATIC_CACHE, IMAGE_CACHE];
+  const validCaches = [STATIC_CACHE, IMAGE_CACHE, RUNTIME_CACHE];
   e.waitUntil(
     caches.keys()
       .then(keys => Promise.all(
@@ -93,23 +99,31 @@ self.addEventListener('fetch', e => {
     request.url.endsWith('.svg') ||
     request.url.endsWith('.png') ||
     request.url.endsWith('.jpg') ||
-    request.url.endsWith('.webp')
+    request.url.endsWith('.webp') ||
+    request.url.endsWith('.avif')
   ) {
     e.respondWith(
       caches.open(IMAGE_CACHE).then(async cache => {
         const cached = await cache.match(request);
         if (cached) return cached;
         const response = await fetch(request).catch(() => null);
-        if (response) cache.put(request, response.clone());
+        if (response && response.ok) cache.put(request, response.clone());
         return response;
       })
     );
     return;
   }
 
-  /* Default: Network-First with cache fallback */
+  /* Other requests: Network-First with runtime cache fallback */
   e.respondWith(
     fetch(request)
+      .then(response => {
+        if (response && response.ok && request.url.startsWith('https://kjmersland-wq.github.io/Snackable/')) {
+          const clone = response.clone();
+          caches.open(RUNTIME_CACHE).then(cache => cache.put(request, clone));
+        }
+        return response;
+      })
       .catch(() => caches.match(request))
   );
 });
