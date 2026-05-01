@@ -78,10 +78,10 @@ All 10 pages have a placeholder comment in the `<head>`:
 
 ### 4. Annual Payment Plans
 **NOTE:** The task only provided monthly Stripe links. Annual plan buttons still have placeholder URLs:
-- `ERSTATT_PRO_ARLIG`
-- `ERSTATT_TEAMS_ARLIG`
+- PRO Annual: `ERSTATT_PRO_ARLIG`
+- TEAMS Annual: `ERSTATT_TEAMS_ARLIG`
 
-If annual plans should be active, provide the Stripe links to update.
+**ACTION:** If annual plans should be active, provide the Stripe links to update these buttons. They are hidden by default (display:none) and only show when users toggle to yearly billing.
 
 ## 📋 Testing Checklist
 
