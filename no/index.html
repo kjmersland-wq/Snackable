@@ -578,7 +578,7 @@ document.getElementById('heroInput').addEventListener('keypress', e => { if (e.k
 
 /* ── PWA ── */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(() => {});
+  navigator.serviceWorker.register('../sw.js').catch(() => {});
 }
 </script>
 </body>
