@@ -1,4 +1,19 @@
 User-agent: *
 Allow: /
+Disallow: /404.html
 
+# Crawl-delay for polite bots
+Crawl-delay: 1
+
+# Sitemap
 Sitemap: https://kjmersland-wq.github.io/Snackable/sitemap.xml
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
