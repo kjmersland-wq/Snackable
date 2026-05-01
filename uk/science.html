@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Learning Science — Active Recall & Spaced Repetition</title>
+<meta name="description" content="The research behind SnackAble Learn: the Ebbinghaus Forgetting Curve, Active Recall, Spaced Repetition, and the Testing Effect — and how we implement all of it automatically." />
+<link rel="canonical" href="https://kjmersland-wq.github.io/Snackable/en/science.html" />
+<link rel="alternate" hreflang="nb" href="https://kjmersland-wq.github.io/Snackable/vitenskap.html" />
+<link rel="alternate" hreflang="en" href="https://kjmersland-wq.github.io/Snackable/en/science.html" />
+<link rel="alternate" hreflang="x-default" href="https://kjmersland-wq.github.io/Snackable/vitenskap.html" />
+<meta name="theme-color" content="#8B5CF6" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kjmersland-wq.github.io/Snackable/en/science.html" />
+<meta property="og:title" content="Learning Science — Active Recall & Spaced Repetition" />
+<meta property="og:description" content="The research behind SnackAble Learn: the Ebbinghaus Forgetting Curve, Active Recall, Spaced Repetition, and the Testing Effect — and how we implement all of it automatically." />
+<meta property="og:image" content="https://kjmersland-wq.github.io/Snackable/og-image.svg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Learning Science — Active Recall & Spaced Repetition" />
+<meta name="twitter:description" content="The research behind SnackAble Learn: the Ebbinghaus Forgetting Curve, Active Recall, Spaced Repetition, and the Testing Effect — and how we implement all of it automatically." />
+<meta name="twitter:image" content="https://kjmersland-wq.github.io/Snackable/og-image.svg" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="SnackAble Learn" />
+<link rel="apple-touch-icon" href="../icons/icon-192.png" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238B5CF6'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E" />
+<link rel="manifest" href="../manifest.json" />
+<link rel="stylesheet" href="../styles.css" />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": "https://kjmersland-wq.github.io/Snackable/en/science.html",
+  "headline": "The Learning Science Behind SnackAble Learn: Active Recall and Spaced Repetition",
+  "description": "The research behind SnackAble Learn: the Ebbinghaus Forgetting Curve, Active Recall, Spaced Repetition, and the Testing Effect.",
+  "url": "https://kjmersland-wq.github.io/Snackable/en/science.html",
+  "inLanguage": "en",
+  "datePublished": "2025-05-01",
+  "dateModified": "2025-05-01",
+  "author": {"@type": "Organization", "name": "KM Tech Labs", "url": "https://kjmersland-wq.github.io/Snackable/"},
+  "publisher": {"@type": "Organization", "name": "KM Tech Labs", "logo": {"@type": "ImageObject", "url": "https://kjmersland-wq.github.io/Snackable/og-image.svg"}},
+  "isPartOf": {"@type": "WebSite", "url": "https://kjmersland-wq.github.io/Snackable/", "name": "SnackAble Learn"}
+}
+</script>
+<style>
+.sci-lead { font-size:1.15rem;color:var(--mut2);max-width:680px;line-height:1.8;margin-bottom:1.5rem; }
+.research-block { display:grid;grid-template-columns:1fr 1.4fr;gap:3rem;align-items:start;margin:5rem 0; }
+.research-block.alt { grid-template-columns:1.4fr 1fr; }
+.research-text .research-num { font-size:3.5rem;font-weight:900;line-height:1;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.3rem; }
+.research-text h2 { font-size:1.5rem;font-weight:900;letter-spacing:-.035em;margin-bottom:.8rem; }
+.research-text p { color:var(--mut2);font-size:.94rem;line-height:1.8;margin-bottom:1rem; }
+.cite { display:inline-block;font-size:.75rem;color:var(--v);background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);padding:.25rem .7rem;border-radius:9999px;margin-bottom:1rem;font-style:italic; }
+.stat-pill-row { display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem; }
+.stat-pill { background:var(--surf);border:1px solid var(--border);padding:.55rem 1rem;border-radius:9999px;font-size:.8rem;color:var(--t2);font-weight:600; }
+.stat-pill span { color:var(--v);font-weight:800; }
+.chart-box { background:var(--surf);border:1px solid var(--border);border-radius:20px;padding:1.5rem;position:relative;overflow:hidden; }
+.chart-box::after { content:'';position:absolute;bottom:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.08),transparent 70%);pointer-events:none; }
+.chart-title { font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--mut2);margin-bottom:1rem; }
+.chart-svg { width:100%;height:auto;display:block; }
+.chart-legend { display:flex;flex-wrap:wrap;gap:.8rem;margin-top:.8rem; }
+.legend-item { display:flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--mut2); }
+.legend-dot { width:10px;height:10px;border-radius:50%;flex-shrink:0; }
+.study-compare { display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.5rem; }
+.sc-card { background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:14px;padding:1.2rem;text-align:center; }
+.sc-method { font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mut);margin-bottom:.5rem; }
+.sc-value { font-size:2.2rem;font-weight:900;line-height:1;margin-bottom:.3rem; }
+.sc-value.high { background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
+.sc-value.mid { color:var(--go); }
+.sc-value.low { color:var(--mut); }
+.sc-desc { font-size:.75rem;color:var(--mut2); }
+.interval-list { display:flex;flex-direction:column;gap:.7rem;margin-top:1.5rem; }
+.int-row { display:flex;align-items:center;gap:.8rem; }
+.int-box { font-size:.8rem;font-weight:700;color:var(--v);width:60px;flex-shrink:0; }
+.int-bar-bg { flex:1;height:8px;background:rgba(255,255,255,.06);border-radius:9999px; }
+.int-bar-fill { height:100%;border-radius:9999px;background:var(--grad); }
+.int-label { font-size:.78rem;color:var(--mut2);white-space:nowrap; }
+.principles-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem;margin-top:4rem; }
+.prin-card { background:var(--surf);border:1px solid var(--border);border-radius:20px;padding:2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .2s; }
+.prin-card:hover { border-color:var(--border2);transform:translateY(-3px); }
+.prin-card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad); }
+.prin-num { font-size:2.5rem;font-weight:900;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;line-height:1; }
+.prin-card h3 { font-size:1.05rem;font-weight:800;margin-bottom:.5rem; }
+.prin-card p { color:var(--mut2);font-size:.88rem;line-height:1.7; }
+.ref-list { display:flex;flex-direction:column;gap:.8rem;margin-top:2rem; }
+.ref { background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:1rem 1.2rem; }
+.ref-title { font-size:.88rem;font-weight:700;margin-bottom:.2rem; }
+.ref-meta { font-size:.78rem;color:var(--mut2); }
+@media(max-width:900px) {
+  .research-block,.research-block.alt { grid-template-columns:1fr; }
+  .study-compare { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<nav id="navbar" role="navigation" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html"><div class="nav-logo-badge">⚡</div><span class="nav-logo-text">SnackAble Learn</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a><a href="features.html">Features</a>
+    <a href="science.html" class="active">Learning Science</a>
+    <a href="pricing.html">Pricing</a><a href="contact.html">Contact</a>
+  </div>
+  <div class="nav-right"><button class="btn-ghost-sm" type="button">Log in</button><a href="pricing.html" class="btn-nav">Start free →</a><div class="lang-toggle"><a class="lang-btn" href="../vitenskap.html">NO</a><a class="lang-btn active" href="science.html">EN</a></div></div>
+  <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a><a href="features.html">Features</a><a href="science.html">Learning Science</a><a href="pricing.html">Pricing</a><a href="contact.html">Contact</a>
+  <div class="lang-toggle" style="align-self:flex-start;"><a class="lang-btn" href="../vitenskap.html">NO</a><a class="lang-btn active" href="science.html">EN</a></div>
+  <a href="pricing.html" style="color:var(--v);font-weight:800;">Start free →</a>
+</div>
+
+<section class="page-hero" id="main-content">
+  <div class="aurora"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+  <div class="hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow"><span class="eyebrow-pill">Learning Science</span>150 years of research</div>
+    <h1>We didn't invent anything new.<br /><span class="grad-text">We automated it.</span></h1>
+    <p>Active Recall and Spaced Repetition are documented as the most effective learning methods ever studied. SnackAble Learn implements both — automatically, for every course you generate.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="sci-lead reveal">
+      What if the reason you forget most of what you learn isn't about your capacity — but your <strong>method</strong>? One hundred and fifty years of research makes it pretty clear: passive exposure to information leads to rapid forgetting. Active retrieval and strategic repetition lead to lasting retention. SnackAble Learn handles the latter automatically.
+    </p>
+
+    <!-- FORGETTING CURVE -->
+    <div class="research-block reveal">
+      <div class="research-text">
+        <span class="cite">Hermann Ebbinghaus · 1885 · Über das Gedächtnis</span>
+        <div class="research-num">80%</div>
+        <h2>The Forgetting Curve — and how we break it</h2>
+        <p>German psychologist Hermann Ebbinghaus spent the 1880s memorising nonsense syllables and testing himself at regular intervals. What he discovered changed how we understand learning forever:</p>
+        <p>Without active review, we forget roughly <strong>50–60% of new information within one hour</strong>, and up to 80% within 24 hours. After a week, almost everything is gone.</p>
+        <p>But Ebbinghaus discovered something else: every time you revisit information, it takes less time to relearn — and the memory lasts longer. That insight is the foundation of Spaced Repetition.</p>
+        <div class="stat-pill-row">
+          <div class="stat-pill">20 min: <span>42%</span> retained</div>
+          <div class="stat-pill">1 hour: <span>44%</span> retained</div>
+          <div class="stat-pill">1 day: <span>33%</span> retained</div>
+          <div class="stat-pill">31 days: <span>21%</span> retained</div>
+        </div>
+      </div>
+      <div class="chart-box">
+        <div class="chart-title">Ebbinghaus Forgetting Curve vs. Spaced Repetition</div>
+        <svg class="chart-svg" viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="gcurve" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#8B5CF6" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="rcurve" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#10B981" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line x1="50" y1="20" x2="50" y2="240" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <line x1="50" y1="240" x2="460" y2="240" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+          <text x="40" y="24" fill="#475569" font-size="9" text-anchor="end">100%</text>
+          <text x="40" y="84" fill="#475569" font-size="9" text-anchor="end">75%</text>
+          <text x="40" y="144" fill="#475569" font-size="9" text-anchor="end">50%</text>
+          <text x="40" y="204" fill="#475569" font-size="9" text-anchor="end">25%</text>
+          <text x="50"  y="255" fill="#475569" font-size="9" text-anchor="middle">0</text>
+          <text x="130" y="255" fill="#475569" font-size="9" text-anchor="middle">1 day</text>
+          <text x="230" y="255" fill="#475569" font-size="9" text-anchor="middle">1 week</text>
+          <text x="350" y="255" fill="#475569" font-size="9" text-anchor="middle">2 weeks</text>
+          <text x="450" y="255" fill="#475569" font-size="9" text-anchor="middle">1 mo</text>
+          <line x1="50" y1="84"  x2="460" y2="84"  stroke="rgba(255,255,255,.03)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="50" y1="144" x2="460" y2="144" stroke="rgba(255,255,255,.03)" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="50" y1="204" x2="460" y2="204" stroke="rgba(255,255,255,.03)" stroke-width="1" stroke-dasharray="4,4"/>
+          <path d="M50,22 C80,60 100,120 130,168 C160,196 200,210 230,218 C280,224 350,228 460,232 L460,240 L50,240 Z" fill="url(#gcurve)"/>
+          <path d="M50,22 C80,60 100,120 130,168 C160,196 200,210 230,218 C280,224 350,228 460,232" fill="none" stroke="#8B5CF6" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M50,22 C65,35 75,45 85,58 L85,30 C100,38 110,50 120,62 L120,28 C140,36 155,50 170,66 L170,22 C200,30 230,40 270,50 L270,20 C320,28 380,38 460,50" fill="none" stroke="#10B981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50,22 L85,58 L85,30 L120,62 L120,28 L170,66 L170,22 L270,50 L270,20 L460,50 L460,240 L50,240 Z" fill="url(#rcurve)"/>
+          <text x="200" y="200" fill="#8B5CF6" font-size="9" font-weight="700">Without review</text>
+          <text x="280" y="38"  fill="#10B981" font-size="9" font-weight="700">With Spaced Repetition</text>
+          <circle cx="50"  cy="22"  r="3" fill="#8B5CF6"/>
+          <circle cx="130" cy="168" r="3" fill="#8B5CF6"/>
+          <circle cx="230" cy="218" r="3" fill="#8B5CF6"/>
+          <circle cx="460" cy="232" r="3" fill="#8B5CF6"/>
+        </svg>
+        <div class="chart-legend">
+          <div class="legend-item"><div class="legend-dot" style="background:#8B5CF6;"></div>Forgetting Curve (no review)</div>
+          <div class="legend-item"><div class="legend-dot" style="background:#10B981;"></div>With Spaced Repetition</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ACTIVE RECALL -->
+    <div class="research-block alt" style="margin-top:5rem;" class="reveal">
+      <div class="chart-box reveal">
+        <div class="chart-title">Testing Effect — recall after 1 week (Roediger & Karpicke 2006)</div>
+        <div class="study-compare">
+          <div class="sc-card">
+            <div class="sc-method">Re-reading only</div>
+            <div class="sc-value low">28%</div>
+            <div class="sc-desc">Re-read 4×, tested 0×</div>
+          </div>
+          <div class="sc-card">
+            <div class="sc-method">Re-read + 1 test</div>
+            <div class="sc-value mid">50%</div>
+            <div class="sc-desc">Re-read 3×, tested 1×</div>
+          </div>
+          <div class="sc-card">
+            <div class="sc-method">Testing only</div>
+            <div class="sc-value high">80%</div>
+            <div class="sc-desc">Re-read 1×, tested 3×</div>
+          </div>
+        </div>
+        <div style="margin-top:1.2rem;padding:.85rem;background:rgba(139,92,246,.07);border-radius:12px;border:1px solid rgba(139,92,246,.2);">
+          <div style="font-size:.8rem;color:var(--mut2);line-height:1.7;"><strong style="color:var(--v);">Conclusion:</strong> Students who tested themselves three times remembered 186% more after one week than those who re-read four times. Testing isn't just how you measure learning — it <em>is</em> learning.</div>
+        </div>
+      </div>
+      <div class="research-text reveal d2">
+        <span class="cite">Roediger & Karpicke · 2006 · Science, vol. 319</span>
+        <div class="research-num">3×</div>
+        <h2>The Testing Effect — getting tested is learning</h2>
+        <p>Henry Roediger III and Jeffrey Karpicke at Washington University published a 2006 study that shook the learning psychology field: students who tested themselves on material remembered dramatically more after one week than those who re-read it — even though the re-reading group spent more total time studying.</p>
+        <p>The mechanism is called <strong>retrieval practice</strong>: when the brain actively tries to recall information, the neural pathways associated with that information get stronger. Think of it like a path through a forest — the more you walk it, the clearer it becomes.</p>
+        <p>SnackAble Learn implements this by generating contextual quiz questions for every concept in your source material — automatically, from day one.</p>
+        <div class="stat-pill-row">
+          <div class="stat-pill"><span>186%</span> better retention</div>
+          <div class="stat-pill">Published in <span>Science</span></div>
+          <div class="stat-pill"><span>N=200</span> students</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- SPACED REPETITION -->
+    <div class="research-block reveal" style="margin-top:5rem;">
+      <div class="research-text">
+        <span class="cite">Ebbinghaus 1885 · Leitner 1972 · Woźniak/SuperMemo 1987</span>
+        <div class="research-num">90%</div>
+        <h2>Spaced Repetition — the optimal review algorithm</h2>
+        <p>Sebastian Leitner developed the Leitner system in 1972 as the first practical implementation of Spaced Repetition. Piotr Woźniak then refined it into the SM-2 algorithm in 1987, which became the foundation for Anki — and now for SnackAble Learn.</p>
+        <p>The principle: the review interval <em>doubles</em> with each successful attempt. Concepts you're shaky on get reviewed often; concepts you've nailed get reviewed rarely. The result is that you spend up to 90% less time reviewing, but retain just as much — because you're reviewing <em>smart</em>.</p>
+        <p>SnackAble Learn calculates an individually optimal review interval for each flashcard based on your actual performance history.</p>
+        <div class="stat-pill-row">
+          <div class="stat-pill">SM-2 <span>algorithm</span></div>
+          <div class="stat-pill"><span>90%</span> time saved</div>
+          <div class="stat-pill">Same as <span>Anki</span></div>
+        </div>
+      </div>
+      <div class="chart-box reveal d2">
+        <div class="chart-title">SM-2 Review Intervals — one flashcard example</div>
+        <div class="interval-list">
+          <div class="int-row"><div class="int-box">Day 1</div><div class="int-bar-bg"><div class="int-bar-fill" style="width:5%"></div></div><div class="int-label">First time</div></div>
+          <div class="int-row"><div class="int-box">Day 2</div><div class="int-bar-bg"><div class="int-bar-fill" style="width:10%"></div></div><div class="int-label">+1 day</div></div>
+          <div class="int-row"><div class="int-box">Day 8</div><div class="int-bar-bg"><div class="int-bar-fill" style="width:22%"></div></div><div class="int-label">+6 days</div></div>
+          <div class="int-row"><div class="int-box">Day 24</div><div class="int-bar-bg"><div class="int-bar-fill" style="width:42%"></div></div><div class="int-label">+16 days</div></div>
+          <div class="int-row"><div class="int-box">Day 67</div><div class="int-bar-bg"><div class="int-bar-fill" style="width:68%"></div></div><div class="int-label">+43 days</div></div>
+          <div class="int-row"><div class="int-box">Day 182</div><div class="int-bar-bg"><div class="int-bar-fill" style="width:100%"></div></div><div class="int-label">+115 days</div></div>
+        </div>
+        <div style="margin-top:1rem;padding:.75rem;background:rgba(16,185,129,.07);border-radius:10px;border:1px solid rgba(16,185,129,.2);font-size:.8rem;color:var(--em);">✓ After 6 reviews over 6 months: estimated 95% long-term retention</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRINCIPLES -->
+<section class="section alt">
+  <div class="container">
+    <div class="eyebrow reveal">Four principles</div>
+    <h2 class="section-h reveal">Cognitive psychology in practice</h2>
+    <p class="section-p reveal">SnackAble Learn is built on four well-documented principles from cognitive psychology and educational research.</p>
+    <div class="principles-grid">
+      <div class="prin-card reveal d1">
+        <div class="prin-num">01</div>
+        <h3>Active Recall (Testing Effect)</h3>
+        <p>Actively retrieving information from memory strengthens memory traces far more than passive re-exposure. Implemented via automatic quiz generation for every concept.</p>
+      </div>
+      <div class="prin-card reveal d2">
+        <div class="prin-num">02</div>
+        <h3>Spaced Repetition</h3>
+        <p>Reviewing at optimal intervals — precisely when you're about to forget — produces dramatically better retention than massed practice (cramming everything at once).</p>
+      </div>
+      <div class="prin-card reveal d3">
+        <div class="prin-num">03</div>
+        <h3>Desirable Difficulty</h3>
+        <p>Robert Bjork (UCLA): learning is most effective when it's slightly challenging. Questions that are too easy produce poor retention. SnackAble Learn calibrates difficulty automatically.</p>
+      </div>
+      <div class="prin-card reveal d4">
+        <div class="prin-num">04</div>
+        <h3>Chunking & Micro-learning</h3>
+        <p>George Miller (1956): working memory holds roughly 7 ± 2 items at a time. SnackAble Learn breaks content into 3–5 minute modules to respect that cognitive limit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- REFERENCES -->
+<section class="section">
+  <div class="container">
+    <div class="eyebrow reveal">References</div>
+    <h2 class="section-h reveal">The research we're built on</h2>
+    <p class="section-p reveal">The full academic record behind SnackAble Learn — all publicly available.</p>
+    <div class="ref-list reveal">
+      <div class="ref"><div class="ref-title">The Power of Testing Memory: Basic Research and Implications for Educational Practice</div><div class="ref-meta">Roediger, H. L., & Karpicke, J. D. (2006). <em>Perspectives on Psychological Science</em>, 1(3), 181–210. doi:10.1111/j.1745-6924.2006.00012.x</div></div>
+      <div class="ref"><div class="ref-title">Über das Gedächtnis: Untersuchungen zur experimentellen Psychologie</div><div class="ref-meta">Ebbinghaus, H. (1885). Leipzig: Duncker & Humblot. (English translation: Memory: A Contribution to Experimental Psychology, 1913)</div></div>
+      <div class="ref"><div class="ref-title">Distributed practice in verbal recall tasks: A review and quantitative synthesis</div><div class="ref-meta">Cepeda, N. J., Pashler, H., Vul, E., Wixted, J. T., & Rohrer, D. (2006). <em>Psychological Bulletin</em>, 132(3), 354–380.</div></div>
+      <div class="ref"><div class="ref-title">Spacing effects in learning: A temporal ridgeline of optimal retention</div><div class="ref-meta">Cepeda, N. J., Vul, E., Rohrer, D., Wixted, J. T., & Pashler, H. (2008). <em>Psychological Science</em>, 19(11), 1095–1102.</div></div>
+      <div class="ref"><div class="ref-title">Optimizing Learning in College: Tips from Cognitive Psychology</div><div class="ref-meta">Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., & Willingham, D. T. (2013). <em>Perspectives on Psychological Science</em>, 8(4), 419–441.</div></div>
+      <div class="ref"><div class="ref-title">Make It Stick: The Science of Successful Learning</div><div class="ref-meta">Brown, P. C., Roediger, H. L., & McDaniel, M. A. (2014). Cambridge, MA: Belknap Press. ISBN 978-0-674-72901-8.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div style="padding:5rem 1.5rem;text-align:center;background:radial-gradient(ellipse at 50% 50%,rgba(99,102,241,.08) 0%,transparent 60%);border-top:1px solid var(--border);">
+  <div class="page-hero-inner reveal">
+    <h2 class="section-h">Ready to put the research to work?</h2>
+    <p style="color:var(--mut2);max-width:480px;margin:.8rem auto 2rem;line-height:1.7;">SnackAble Learn implements Active Recall and Spaced Repetition automatically — for every course you generate. Start free today.</p>
+    <div class="btn-group"><a href="pricing.html" class="btn-primary">See pricing →</a><a href="index.html" class="btn-outline">Back to home</a></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><a class="nav-logo" href="index.html"><div class="nav-logo-badge" style="width:26px;height:26px;font-size:.82rem;">⚡</div><span class="nav-logo-text">SnackAble Learn</span></a><p style="margin-top:.6rem;">From passive to active learning — automatically. Built on educational research, powered by modern AI.</p></div>
+    <div class="footer-col"><h5>Product</h5><a href="features.html">Features</a><a href="pricing.html">Pricing</a><a href="science.html">Learning Science</a></div>
+    <div class="footer-col"><h5>Company</h5><a href="contact.html">Contact</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+    <div class="footer-col"><h5>Resources</h5><a href="science.html">Research</a><a href="#">Blog</a><a href="contact.html">Support</a></div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 SnackAble Learn · All rights reserved</p><div class="km-badge">Built by <span>KM TECH LABS</span> · Kristiansand, Norway 🇳🇴</div></div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60));
+document.getElementById('hamburger').addEventListener('click',function(){const isOpen=this.classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open');this.setAttribute('aria-expanded',isOpen.toString());});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+if('serviceWorker'in navigator)navigator.serviceWorker.register('../sw.js').catch(()=>{});
+</script>
+</body>
+</html>

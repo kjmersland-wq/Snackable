@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Funksjoner — SnackAble Learn · AI-mikrolæring</title>
+<meta name="description" content="Se alle funksjoner i SnackAble Learn: automatisk kursbygging, Active Recall-quizer, Spaced Repetition, eksport til Anki og Notion, team-støtte og mer." />
+<link rel="canonical" href="https://kjmersland-wq.github.io/Snackable/features.html" />
+<link rel="alternate" hreflang="nb" href="https://kjmersland-wq.github.io/Snackable/features.html" />
+<link rel="alternate" hreflang="en" href="https://kjmersland-wq.github.io/Snackable/en/features.html" />
+<link rel="alternate" hreflang="x-default" href="https://kjmersland-wq.github.io/Snackable/features.html" />
+<link rel="sitemap" type="application/xml" href="sitemap.xml" />
+<meta name="theme-color" content="#8B5CF6" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kjmersland-wq.github.io/Snackable/features.html" />
+<meta property="og:title" content="Funksjoner — SnackAble Learn · AI-mikrolæring" />
+<meta property="og:description" content="Se alle funksjoner i SnackAble Learn: automatisk kursbygging, Active Recall-quizer, Spaced Repetition, eksport til Anki og Notion, team-støtte og mer." />
+<meta property="og:image" content="https://kjmersland-wq.github.io/Snackable/og-image.svg" />
+<meta property="og:locale" content="nb_NO" />
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Funksjoner — SnackAble Learn · AI-mikrolæring" />
+<meta name="twitter:description" content="Se alle funksjoner i SnackAble Learn: automatisk kursbygging, Active Recall-quizer, Spaced Repetition, eksport til Anki og Notion, team-støtte og mer." />
+<meta name="twitter:image" content="https://kjmersland-wq.github.io/Snackable/og-image.svg" />
+<!-- Apple PWA -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="SnackAble Learn" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<!-- Favicon -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%238B5CF6'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif'%3E%E2%9A%A1%3C/text%3E%3C/svg%3E" />
+<link rel="manifest" href="manifest.json" />
+<link rel="stylesheet" href="styles.css" />
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://kjmersland-wq.github.io/Snackable/features.html",
+  "url": "https://kjmersland-wq.github.io/Snackable/features.html",
+  "name": "Funksjoner — SnackAble Learn",
+  "description": "Se alle funksjoner i SnackAble Learn: automatisk kursbygging, Active Recall-quizer, Spaced Repetition, eksport til Anki og Notion, team-støtte og mer.",
+  "inLanguage": "nb-NO",
+  "isPartOf": {
+    "@type": "WebSite",
+    "url": "https://kjmersland-wq.github.io/Snackable/",
+    "name": "SnackAble Learn"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Hjem", "item": "https://kjmersland-wq.github.io/Snackable/index.html"},
+      {"@type": "ListItem", "position": 2, "name": "Funksjoner", "item": "https://kjmersland-wq.github.io/Snackable/features.html"}
+    ]
+  }
+}
+</script>
+<style>
+.feat-hero-img {
+  max-width: 960px; margin: 4rem auto 0;
+  border: 1px solid var(--border); border-radius: 24px; overflow: hidden;
+  box-shadow: 0 60px 140px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.04);
+  position: relative;
+}
+.feat-hero-img-glow {
+  position: absolute; inset: -80px; z-index: -1;
+  background: radial-gradient(ellipse, rgba(99,102,241,.12) 0%, transparent 65%);
+}
+/* App mockup */
+.app-bar { background: rgba(255,255,255,.035); border-bottom: 1px solid var(--border); padding: .85rem 1.3rem; display: flex; align-items: center; gap: .6rem; }
+.dot-row { display: flex; gap: .4rem; }
+.dot { width: 11px; height: 11px; border-radius: 50%; }
+.dot.r{background:#FF5F57;}.dot.y{background:#FFBD2E;}.dot.g{background:#28C840;}
+.app-url { flex:1; background:rgba(255,255,255,.04); border-radius:7px; padding:.28rem .8rem; font-size:.76rem; color:var(--mut); margin:0 .8rem; }
+.app-body { display: grid; grid-template-columns: 240px 1fr; min-height: 400px; }
+.app-side { border-right: 1px solid var(--border); padding: 1.2rem .8rem; }
+.app-side-h { font-size:.65rem; text-transform:uppercase; letter-spacing:.1em; color:var(--mut); padding:.3rem .6rem; margin-bottom:.3rem; }
+.app-item { display:flex; align-items:center; gap:.6rem; padding:.6rem .75rem; border-radius:9px; font-size:.8rem; color:var(--mut2); cursor:default; transition:background .15s; }
+.app-item.active { background:rgba(139,92,246,.18); color:var(--v); font-weight:600; }
+.app-item:hover:not(.active) { background:rgba(255,255,255,.04); }
+.app-ring { width:10px;height:10px;border-radius:50%;border:2px solid var(--border);flex-shrink:0; }
+.app-item.done .app-ring { border-color:var(--em);background:var(--em); }
+.app-item.active .app-ring { border-color:var(--v);background:var(--v); }
+.app-main { padding: 1.8rem; }
+.app-mod-label { font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--v);margin-bottom:.3rem; }
+.app-mod-title { font-size:1.1rem;font-weight:700;margin-bottom:1rem; }
+.app-prog { height:4px;background:rgba(255,255,255,.06);border-radius:9999px;margin-bottom:1.4rem;position:relative; }
+.app-prog-fill { height:100%;width:42%;border-radius:9999px;background:var(--grad); }
+.app-prog-fill::after { content:'';position:absolute;right:-1px;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 6px rgba(139,92,246,.8); }
+.app-cards { display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem; }
+.app-card { background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:11px;padding:.9rem; }
+.app-ctag { font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem; }
+.app-ctag.q{color:var(--v);}.app-ctag.f{color:var(--cy);}.app-ctag.s{color:var(--em);}
+.app-ctext { font-size:.78rem;color:var(--mut2);line-height:1.5; }
+.app-ans { margin-top:.5rem;font-size:.73rem;color:var(--em);padding:.3rem .55rem;background:rgba(16,185,129,.07);border-radius:5px;border-left:2px solid var(--em); }
+
+/* Feature detail rows */
+.feat-row { display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;margin-bottom:6rem; }
+.feat-row.reverse { direction:rtl; }
+.feat-row.reverse > * { direction:ltr; }
+.feat-row-text {}
+.feat-row-text .tag { margin-bottom:.8rem;display:inline-block; }
+.feat-row-text h2 { font-size:clamp(1.7rem,3.5vw,2.3rem);font-weight:900;letter-spacing:-.04em;line-height:1.1;margin-bottom:.8rem; }
+.feat-row-text p { color:var(--mut2);font-size:.97rem;line-height:1.75;margin-bottom:1.2rem; }
+.feat-list { display:flex;flex-direction:column;gap:.5rem; }
+.feat-li { display:flex;align-items:flex-start;gap:.55rem;font-size:.88rem;color:var(--mut2); }
+.feat-li::before { content:'✓';color:var(--em);font-weight:700;flex-shrink:0; }
+.feat-visual { background:var(--surf);border:1px solid var(--border);border-radius:20px;overflow:hidden;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative; }
+.feat-visual-inner { width:100%;height:100%;padding:1.5rem;display:flex;flex-direction:column;gap:.8rem;justify-content:center; }
+
+/* Format grid */
+.format-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:3rem; }
+.fmt-card { background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;transition:border-color .25s,transform .2s; }
+.fmt-card:hover { border-color:var(--border2);transform:translateY(-3px); }
+.fmt-icon { font-size:2.2rem;margin-bottom:.7rem;display:block; }
+.fmt-name { font-size:.95rem;font-weight:700;margin-bottom:.3rem; }
+.fmt-desc { font-size:.82rem;color:var(--mut2); }
+
+/* Export grid */
+.export-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin-top:3rem; }
+.exp-card { background:var(--surf);border:1px solid var(--border);border-radius:18px;padding:1.6rem;transition:border-color .25s,transform .2s; }
+.exp-card:hover { border-color:var(--border2);transform:translateY(-3px); }
+.exp-head { display:flex;align-items:center;gap:.8rem;margin-bottom:.8rem; }
+.exp-ico { font-size:1.6rem; }
+.exp-name { font-size:1rem;font-weight:800; }
+.exp-desc { font-size:.84rem;color:var(--mut2);line-height:1.65; }
+
+/* Coming soon */
+.coming-grid { display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:3rem; }
+.coming-card { background:var(--surf);border:1px solid var(--border);border-radius:16px;padding:1.5rem;opacity:.7;position:relative; }
+.coming-badge { position:absolute;top:.8rem;right:.8rem;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--go);background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.25);padding:.18rem .5rem;border-radius:9999px; }
+.coming-card h4 { font-size:.95rem;font-weight:700;margin:.6rem 0 .3rem; }
+.coming-card p { font-size:.84rem;color:var(--mut);line-height:1.6; }
+
+@media(max-width:900px) {
+  .feat-row { grid-template-columns:1fr;gap:2rem;margin-bottom:4rem; }
+  .feat-row.reverse { direction:ltr; }
+  .app-body { grid-template-columns:1fr; }
+  .app-side { display:none; }
+  .app-cards { grid-template-columns:1fr 1fr; }
+}
+@media(max-width:600px) {
+  .app-cards { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Hopp til innhold</a>
+
+<nav id="navbar" role="navigation" aria-label="Hovednavigasjon">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-badge">⚡</div>
+    <span class="nav-logo-text">SnackAble Learn</span>
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Hjem</a>
+    <a href="features.html" class="active">Funksjoner</a>
+    <a href="vitenskap.html">Læringsvitenskap</a>
+    <a href="priser.html">Priser</a>
+    <a href="kontakt.html">Kontakt</a>
+  </div>
+  <div class="nav-right">
+    <button class="btn-ghost-sm" type="button">Logg inn</button>
+    <a href="priser.html" class="btn-nav">Start gratis →</a>
+    <div class="lang-toggle"><a class="lang-btn active" href="features.html">NO</a><a class="lang-btn" href="en/features.html">EN</a></div>
+  </div>
+  <button class="hamburger" id="hamburger" type="button" aria-label="Meny" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Hjem</a><a href="features.html">Funksjoner</a>
+  <a href="vitenskap.html">Læringsvitenskap</a><a href="priser.html">Priser</a>
+  <a href="kontakt.html">Kontakt</a>
+  <div class="lang-toggle" style="align-self:flex-start;"><a class="lang-btn active" href="features.html">NO</a><a class="lang-btn" href="en/features.html">EN</a></div>
+  <a href="priser.html" style="color:var(--v);font-weight:800;">Start gratis →</a>
+</div>
+
+<!-- HERO -->
+<section class="page-hero" id="main-content">
+  <div class="aurora"><div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div></div>
+  <div class="hero-grid"></div>
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow"><span class="eyebrow-pill">Funksjoner</span>Alt du trenger for å faktisk lære</div>
+    <h1>Kraftig nok for teams.<br /><span class="grad-text">Enkel nok for alle.</span></h1>
+    <p>SnackAble Learn kombinerer automatisk kursbygging, Active Recall og Spaced Repetition i ett verktøy — og er klar på under 60 sekunder fra du limer inn kilden.</p>
+    <div class="btn-group">
+      <a href="priser.html" class="btn-primary">Prøv gratis →</a>
+      <a href="vitenskap.html" class="btn-outline">Les forskningen</a>
+    </div>
+  </div>
+  <div class="feat-hero-img reveal">
+    <div class="feat-hero-img-glow"></div>
+    <div style="background:rgba(255,255,255,.03);">
+      <div class="app-bar">
+        <div class="dot-row"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+        <div class="app-url">app.snackablelearn.com — Active Recall 101 · Modul 2 av 5</div>
+      </div>
+      <div class="app-body">
+        <div class="app-side">
+          <div class="app-side-h">Moduler</div>
+          <div class="app-item done"><div class="app-ring"></div>Introduksjon</div>
+          <div class="app-item active"><div class="app-ring"></div>Hva er Active Recall?</div>
+          <div class="app-item"><div class="app-ring"></div>Spaced Repetition</div>
+          <div class="app-item"><div class="app-ring"></div>Teknikker i praksis</div>
+          <div class="app-item"><div class="app-ring"></div>Avsluttende quiz</div>
+        </div>
+        <div class="app-main">
+          <div class="app-mod-label">Modul 2 av 5 · 3 min</div>
+          <div class="app-mod-title">Hva er Active Recall?</div>
+          <div class="app-prog"><div class="app-prog-fill"></div></div>
+          <div class="app-cards">
+            <div class="app-card"><div class="app-ctag q">Quiz</div><div class="app-ctext">Hva er den primære mekanismen bak Active Recall som gjør det mer effektivt enn passiv lesning?</div><div class="app-ans">✓ Aktiv gjenhenting styrker nevrale forbindelser</div></div>
+            <div class="app-card"><div class="app-ctag f">Flashcard</div><div class="app-ctext"><strong>Testing Effect</strong> → Fenomenet der det å bli testet på informasjon gir bedre retensjon enn re-eksponering</div></div>
+            <div class="app-card"><div class="app-ctag s">Nøkkelpunkt</div><div class="app-ctext">Roediger & Karpicke (2006): Studenter som testet seg husket 80% mer etter 1 uke vs. re-lesning</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE DETAILS -->
+<section class="section">
+  <div class="container">
+
+    <div class="feat-row reveal">
+      <div class="feat-row-text">
+        <span class="tag">Kursbygging</span>
+        <h2>Fra rå kilde til<br /><span class="grad-text">ferdig kurs på 60 sek</span></h2>
+        <p>Vanlige AI-verktøy gir deg et sammendrag — og stopper der. SnackAble Learn går videre: AI-en identifiserer nøkkelkonsepter, deler innholdet i pedagogisk riktige moduler på 3–5 minutter, og bygger quiz, flashcards og sammendrag for hvert konsept automatisk.</p>
+        <p>Teknisk bruker vi en avansert GPT-4-klasse språkmodell finjustert på pedagogisk innholdsstrukturering. Modellen er trent til å skille mellom støy og nøkkelkonsepter — og produserer strukturert læringsinnhold, ikke bare omformulert tekst.</p>
+        <div class="feat-list">
+          <div class="feat-li">Identifiserer 3–8 nøkkelkonsepter per kilde automatisk</div>
+          <div class="feat-li">Deler innhold i 3–5 minutters moduler for optimal kognitiv belastning</div>
+          <div class="feat-li">Genererer 3–15 spørsmål per modul basert på kildematerialet</div>
+          <div class="feat-li">Lager kontekstuelle flashcards med begrep ↔ definisjon-format</div>
+          <div class="feat-li">Skriver nøkkelpunkt-sammendrag per modul</div>
+        </div>
+      </div>
+      <div class="feat-visual">
+        <div class="feat-visual-inner">
+          <div style="background:rgba(139,92,246,.08);border:1px solid rgba(139,92,246,.2);border-radius:12px;padding:1rem;">
+            <div style="font-size:.7rem;color:var(--mut);margin-bottom:.4rem;">📎 Kilde lest inn</div>
+            <div style="font-size:.82rem;font-weight:600;color:var(--t2);">youtube.com/watch?v=ukLnPbIffxE</div>
+          </div>
+          <div style="text-align:center;color:var(--v);font-size:1.5rem;margin:.3rem 0;">↓</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.6rem;font-size:.72rem;">
+            <div style="background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2);border-radius:10px;padding:.7rem;text-align:center;"><div style="font-size:1.2rem;margin-bottom:.3rem;">📚</div><div style="color:var(--v);font-weight:700;">5 moduler</div></div>
+            <div style="background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.2);border-radius:10px;padding:.7rem;text-align:center;"><div style="font-size:1.2rem;margin-bottom:.3rem;">🎯</div><div style="color:var(--cy);font-weight:700;">23 spørsmål</div></div>
+            <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:.7rem;text-align:center;"><div style="font-size:1.2rem;margin-bottom:.3rem;">🃏</div><div style="color:var(--em);font-weight:700;">31 flashcards</div></div>
+          </div>
+          <div style="background:rgba(16,185,129,.06);border:1px solid rgba(16,185,129,.2);border-radius:10px;padding:.7rem;text-align:center;font-size:.8rem;color:var(--em);font-weight:700;">✅ Klart på 47 sekunder</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-row reverse reveal">
+      <div class="feat-row-text">
+        <span class="tag">Spaced Repetition</span>
+        <h2>Algoritmen husker<br /><span class="grad-text">hva du er i ferd med å glemme</span></h2>
+        <p>SnackAble Learn implementerer SM-2-algoritmen — samme algoritme som Anki bruker, og som er basert på Piotr Woźniaks banbrytende forskning fra 1987. Algoritmen beregner nøyaktig når du er i ferd med å glemme et konsept, og sender deg en repetisjonspåminnelse akkurat da — verken for tidlig eller for sent.</p>
+        <p>Resultatet: du bruker opptil 90 % mindre tid på repetisjon, men husker like mye — fordi du repeterer <em>smart</em>, ikke <em>mye</em>.</p>
+        <div class="feat-list">
+          <div class="feat-li">SM-2-algoritme: beregner individuelt optimalt repetisjonsintervall</div>
+          <div class="feat-li">Push-varsler og e-postpåminnelser til rett tidspunkt</div>
+          <div class="feat-li">Tracker nøyaktig hvilke flashcards du husker og hvilke du glemmer</div>
+          <div class="feat-li">Viser fremgangsstatistikk per modul og per kurs</div>
+          <div class="feat-li">Eksporter repetisjonsdataene dine til Anki for offline bruk</div>
+        </div>
+      </div>
+      <div class="feat-visual">
+        <div class="feat-visual-inner">
+          <div style="font-size:.72rem;color:var(--mut);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em;">Repetisjonsplan — neste 7 dager</div>
+          <div style="display:flex;flex-direction:column;gap:.45rem;">
+            <div style="display:flex;align-items:center;gap:.7rem;font-size:.8rem;">
+              <span style="color:var(--mut2);width:50px;font-size:.72rem;">I dag</span>
+              <div style="flex:1;height:8px;background:rgba(139,92,246,.12);border-radius:9999px;"><div style="height:100%;width:85%;background:var(--v);border-radius:9999px;"></div></div>
+              <span style="color:var(--v);font-weight:700;font-size:.76rem;">17 kort</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:.7rem;font-size:.8rem;">
+              <span style="color:var(--mut2);width:50px;font-size:.72rem;">I morgen</span>
+              <div style="flex:1;height:8px;background:rgba(139,92,246,.12);border-radius:9999px;"><div style="height:100%;width:40%;background:var(--in);border-radius:9999px;"></div></div>
+              <span style="color:var(--in);font-weight:700;font-size:.76rem;">8 kort</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:.7rem;font-size:.8rem;">
+              <span style="color:var(--mut2);width:50px;font-size:.72rem;">Dag 3</span>
+              <div style="flex:1;height:8px;background:rgba(139,92,246,.12);border-radius:9999px;"><div style="height:100%;width:20%;background:var(--cy);border-radius:9999px;"></div></div>
+              <span style="color:var(--cy);font-weight:700;font-size:.76rem;">4 kort</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:.7rem;font-size:.8rem;">
+              <span style="color:var(--mut2);width:50px;font-size:.72rem;">Dag 7</span>
+              <div style="flex:1;height:8px;background:rgba(139,92,246,.12);border-radius:9999px;"><div style="height:100%;width:10%;background:var(--em);border-radius:9999px;"></div></div>
+              <span style="color:var(--em);font-weight:700;font-size:.76rem;">2 kort</span>
+            </div>
+          </div>
+          <div style="margin-top:.8rem;padding:.7rem;background:rgba(16,185,129,.07);border-radius:10px;border:1px solid rgba(16,185,129,.2);font-size:.78rem;color:var(--em);">📈 Retensjon etter 30 dager: <strong>91 %</strong> — uten repetisjon ville det vært 21 %</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="feat-row reveal">
+      <div class="feat-row-text">
+        <span class="tag">Team-funksjoner</span>
+        <h2>Onboarding og opplæring<br /><span class="grad-text">som faktisk fungerer</span></h2>
+        <p>Med Teams-planen deler hele teamet ett kursbibliotek. HR-ansvarlig laster opp onboarding-dokumenter, retningslinjer og opplæringsvideoer — SnackAble Learn gjør dem om til interaktive moduler. Nye ansatte fullfører kurset, og du ser nøyaktig hvem som er på hvilken modul.</p>
+        <div class="feat-list">
+          <div class="feat-li">Felles kursbibliotek for opptil 10 brukere (Teams-plan)</div>
+          <div class="feat-li">Admin-dashboard med fremdriftsrapport per ansatt</div>
+          <div class="feat-li">Importer hele mapper med PDF-er og konverter til kurs</div>
+          <div class="feat-li">Egendefinert branding — logo og farger på kursene</div>
+          <div class="feat-li">Prioritert support og onboarding-hjelp</div>
+        </div>
+      </div>
+      <div class="feat-visual">
+        <div class="feat-visual-inner">
+          <div style="font-size:.72rem;color:var(--mut);margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.08em;">Team-dashboard</div>
+          <div style="display:flex;flex-direction:column;gap:.45rem;">
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:.8rem;padding:.55rem .8rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:9px;">
+              <span>👤 Sara K.</span><span style="color:var(--em);font-size:.76rem;font-weight:700;">✓ Fullført · 94 %</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:.8rem;padding:.55rem .8rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:9px;">
+              <span>👤 Marius L.</span><span style="color:var(--v);font-size:.76rem;font-weight:700;">▶ Modul 3 av 5</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:.8rem;padding:.55rem .8rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:9px;">
+              <span>👤 Thomas B.</span><span style="color:var(--cy);font-size:.76rem;font-weight:700;">▶ Modul 1 av 5</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;font-size:.8rem;padding:.55rem .8rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:9px;">
+              <span>👤 Linn A.</span><span style="color:var(--go);font-size:.76rem;font-weight:700;">⏸ Ikke startet</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SUPPORTED FORMATS -->
+<section class="section alt">
+  <div class="container">
+    <div class="eyebrow reveal">Støttede formater</div>
+    <h2 class="section-h reveal">Du har allerede kilden.<br />Vi tar resten.</h2>
+    <p class="section-p reveal">SnackAble Learn støtter alle vanlige formater — norsk og engelsk uten ekstra konfigurasjon.</p>
+    <div class="format-grid">
+      <div class="fmt-card reveal d1"><span class="fmt-icon">▶️</span><div class="fmt-name">YouTube</div><div class="fmt-desc">Lim inn URL — AI henter transkripsjon og bygger kurs. Støtter norske og engelske videoer.</div></div>
+      <div class="fmt-card reveal d2"><span class="fmt-icon">📄</span><div class="fmt-name">PDF</div><div class="fmt-desc">Last opp PDF-er opptil 50 MB. Perfekt for pensum, rapporter og onboarding-dokumenter.</div></div>
+      <div class="fmt-card reveal d3"><span class="fmt-icon">🌐</span><div class="fmt-name">Bloggartikkel / URL</div><div class="fmt-desc">Lim inn en artikkel-URL — AI-en leser innholdet og strukturerer det til et kurs.</div></div>
+      <div class="fmt-card reveal d4"><span class="fmt-icon">📝</span><div class="fmt-name">Rå tekst</div><div class="fmt-desc">Lim inn notater, transkripsjon eller egenskrevet innhold direkte i tekstfeltet.</div></div>
+      <div class="fmt-card reveal d1"><span class="fmt-icon">🔜</span><div class="fmt-name" style="color:var(--mut2);">Notion (snart)</div><div class="fmt-desc">Direkte Notion-sideimport via integrasjon. Kommer i Q3 2025.</div></div>
+      <div class="fmt-card reveal d2"><span class="fmt-icon">🔜</span><div class="fmt-name" style="color:var(--mut2);">Google Docs (snart)</div><div class="fmt-desc">Importer direkte fra Google Workspace. Kommer i Q3 2025.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPORT -->
+<section class="section">
+  <div class="container">
+    <div class="eyebrow reveal">Eksport</div>
+    <h2 class="section-h reveal">Du eier kunnskapen din.<br /><span class="grad-text">Ta den med deg.</span></h2>
+    <p class="section-p reveal">Kursinnholdet eksporteres til verktøyene du allerede bruker — ett klikk, fire formater.</p>
+    <div class="export-grid">
+      <div class="exp-card reveal d1"><div class="exp-head"><div class="exp-ico">🃏</div><div class="exp-name">Anki</div></div><div class="exp-desc">Eksporter alle flashcards som et Anki-deck (.apkg). Åpne direkte i Anki for offline Spaced Repetition på mobil og desktop. Kompatibel med AnkiDroid og AnkiMobile.</div></div>
+      <div class="exp-card reveal d2"><div class="exp-head"><div class="exp-ico">📝</div><div class="exp-name">Notion</div></div><div class="exp-desc">Eksporter kurs som en Notion-database med alle moduler, spørsmål og flashcards strukturert som sider. Klar for import til Notion workspace.</div></div>
+      <div class="exp-card reveal d3"><div class="exp-head"><div class="exp-ico">📄</div><div class="exp-name">PDF</div></div><div class="exp-desc">Pent formatert PDF med alle moduler, nøkkelpunkter og quiz-spørsmål. Klar for utskrift, deling eller arkivering. Inkluderer din branding (Teams-plan).</div></div>
+      <div class="exp-card reveal d4"><div class="exp-head"><div class="exp-ico">📊</div><div class="exp-name">CSV</div></div><div class="exp-desc">Rådata i CSV-format: spørsmål, svar, flashcards og modulstruktur. Bruk i Excel, Google Sheets, egne systemer eller videre behandling.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMING SOON -->
+<section class="section alt">
+  <div class="container">
+    <div class="eyebrow reveal">På vei</div>
+    <h2 class="section-h reveal">Hva som kommer</h2>
+    <p class="section-p reveal">Vi bygger kontinuerlig — her er hva som er i pipeline.</p>
+    <div class="coming-grid">
+      <div class="coming-card reveal d1"><div class="coming-badge">Q3 2025</div><div style="font-size:1.5rem;">🎙️</div><h4>Podcast-støtte</h4><p>Last opp lydfiler (.mp3, .wav) — AI transkriberer og bygger kurs automatisk.</p></div>
+      <div class="coming-card reveal d2"><div class="coming-badge">Q3 2025</div><div style="font-size:1.5rem;">📱</div><h4>Mobil-app</h4><p>iOS og Android-app for å gjennomføre kurs og flashcard-repetisjoner på mobil.</p></div>
+      <div class="coming-card reveal d3"><div class="coming-badge">Q4 2025</div><div style="font-size:1.5rem;">🤝</div><h4>Notion-integrasjon</h4><p>Direkte to-veis synkronisering med Notion — importer sider og eksporter kurs.</p></div>
+      <div class="coming-card reveal d4"><div class="coming-badge">Q4 2025</div><div style="font-size:1.5rem;">🏆</div><h4>Gamification</h4><p>Poeng, badges og lederboard for team-planer — øk gjennomføringsraten med konkurranse.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div style="padding:5rem 1.5rem;text-align:center;background:radial-gradient(ellipse at 50% 50%,rgba(99,102,241,.08) 0%,transparent 60%);border-top:1px solid var(--border);">
+  <div class="page-hero-inner reveal">
+    <h2 class="section-h">Klar til å prøve?</h2>
+    <p style="color:var(--mut2);max-width:480px;margin:.8rem auto 2rem;line-height:1.7;">Start gratis — ingen kredittkort, ingen binding. Generer ditt første kurs på under 60 sekunder.</p>
+    <div class="btn-group">
+      <a href="priser.html" class="btn-primary">Se alle planer →</a>
+      <a href="kontakt.html" class="btn-outline">Kontakt oss</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand"><a class="nav-logo" href="index.html"><div class="nav-logo-badge" style="width:26px;height:26px;font-size:.82rem;">⚡</div><span class="nav-logo-text">SnackAble Learn</span></a><p style="margin-top:.6rem;">Fra passiv til aktiv læring — automatisk. Bygget på pedagogisk forskning, drevet av moderne AI.</p></div>
+    <div class="footer-col"><h5>Produkt</h5><a href="features.html">Funksjoner</a><a href="priser.html">Priser</a><a href="vitenskap.html">Læringsvitenskap</a></div>
+    <div class="footer-col"><h5>Selskapet</h5><a href="kontakt.html">Kontakt</a><a href="#">Personvern</a><a href="#">Vilkår</a></div>
+    <div class="footer-col"><h5>Ressurser</h5><a href="vitenskap.html">Forskning</a><a href="#">Blogg</a><a href="kontakt.html">Support</a></div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 SnackAble Learn · Alle rettigheter forbeholdt</p>
+    <div class="km-badge">Utviklet av <span>KM TECH LABS</span> · Kristiansand, Norge 🇳🇴</div>
+  </div>
+</footer>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60));
+document.getElementById('hamburger').addEventListener('click',function(){const isOpen=this.classList.toggle('open');document.getElementById('mobileMenu').classList.toggle('open');this.setAttribute('aria-expanded',isOpen.toString());});
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');obs.unobserve(x.target);}});},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
